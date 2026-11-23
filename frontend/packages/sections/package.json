@@ -1,0 +1,30 @@
+{
+  "name": "@opzy/sections",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Librería de secciones de OPZY: componentes Vue, esquemas de props y catálogo para el agente.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./registry": "./src/registry.ts",
+    "./catalog.json": "./dist/catalog.json"
+  },
+  "scripts": {
+    "build:catalog": "tsx scripts/build-catalog.ts",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vue": "^3.5.0",
+    "vue-tsc": "^2.1.0",
+    "zod-to-json-schema": "^3.23.5"
+  }
+}

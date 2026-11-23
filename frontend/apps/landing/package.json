@@ -1,0 +1,14 @@
+{
+  "name": "@opzy/landing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing page de OPZY.",
+  "scripts": {
+    "dev": "vite --port 5174",
+    "build": "vue-tsc --noEmit && vite build",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": { "@opzy/ui": "workspace:*", "vue": "^3.5.0" },
+  "devDependencies": { "@vitejs/plugin-vue": "^5.1.0", "typescript": "^5.6.0", "vite": "^5.4.0", "vue-tsc": "^2.1.0" }
+}

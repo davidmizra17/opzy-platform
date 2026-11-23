@@ -1,0 +1,85 @@
+[project]
+name = "opzy-backend"
+version = "0.1.0"
+description = "Backend de OPZY: API pública, triage, páginas y pagos"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.1,<5.2",
+    "djangorestframework>=3.15",
+    "drf-spectacular>=0.27",
+    "django-environ>=0.11",
+    "django-cors-headers>=4.4",
+    "psycopg[binary]>=3.2",
+    "celery[redis]>=5.4",
+    "jsonschema>=4.23",
+    "jsonpatch>=1.33",
+    "gunicorn>=23.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-django>=4.9",
+    "ruff>=0.7",
+    "import-linter>=2.1",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py", "tests.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["**/migrations/**"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "DJ"]
+
+# Límites entre módulos (ver docs/adr/0002-monolito-modular.md)
+[tool.importlinter]
+root_packages = ["apps", "config"]
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "El dominio de páginas no depende de Django"
+type = "forbidden"
+source_modules = ["apps.pages.domain"]
+forbidden_modules = ["django", "rest_framework", "apps.pages.infrastructure", "apps.pages.interfaces"]
+
+[[tool.importlinter.contracts]]
+name = "El dominio de triage no depende de Django"
+type = "forbidden"
+source_modules = ["apps.triage.domain"]
+forbidden_modules = ["django", "rest_framework", "apps.triage.infrastructure", "apps.triage.interfaces"]
+
+[[tool.importlinter.contracts]]
+name = "Capas de pages"
+type = "layers"
+layers = [
+    "apps.pages.interfaces",
+    "apps.pages.infrastructure",
+    "apps.pages.application",
+    "apps.pages.domain",
+]
+
+[[tool.importlinter.contracts]]
+name = "Capas de triage"
+type = "layers"
+layers = [
+    "apps.triage.interfaces",
+    "apps.triage.infrastructure",
+    "apps.triage.application",
+    "apps.triage.domain",
+]
+
+[[tool.importlinter.contracts]]
+name = "Ningún módulo importa los modelos de otro"
+type = "independence"
+modules = [
+    "apps.identity.models",
+    "apps.tracking.models",
+    "apps.conversations.models",
+    "apps.catalog.models",
+    "apps.billing.models",
+]

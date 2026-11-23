@@ -1,0 +1,12 @@
+{
+  "name": "@opzy/renderer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Dibuja un documento de página. Lo usan la vista previa del widget y el publisher.",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": { "typecheck": "vue-tsc --noEmit" },
+  "dependencies": { "@opzy/sections": "workspace:*" },
+  "peerDependencies": { "vue": "^3.5.0" },
+  "devDependencies": { "typescript": "^5.6.0", "vue": "^3.5.0", "vue-tsc": "^2.1.0" }
+}

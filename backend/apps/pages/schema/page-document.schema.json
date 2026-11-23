@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "library": {
+      "type": "string"
+    },
+    "locale": {
+      "type": "string",
+      "enum": [
+        "es",
+        "en"
+      ]
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "palette": {
+          "type": "string",
+          "enum": [
+            "default",
+            "warm",
+            "night"
+          ]
+        },
+        "font": {
+          "type": "string",
+          "enum": [
+            "default",
+            "serif"
+          ]
+        },
+        "radius": {
+          "type": "string",
+          "enum": [
+            "none",
+            "sm",
+            "md",
+            "lg"
+          ]
+        }
+      },
+      "required": [
+        "palette",
+        "font",
+        "radius"
+      ],
+      "additionalProperties": false
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "type": {
+                "type": "string",
+                "const": "hero-split"
+              },
+              "props": {
+                "type": "object",
+                "properties": {
+                  "variant": {
+                    "type": "string",
+                    "enum": [
+                      "image-left",
+                      "image-right"
+                    ],
+                    "default": "image-right"
+                  },
+                  "headline": {
+                    "type": "string",
+                    "maxLength": 80,
+                    "description": "Titular principal. Solo con datos del cliente."
+                  },
+                  "subheadline": {
+                    "type": "string",
+                    "maxLength": 160
+                  },
+                  "imageId": {
+                    "type": "string",
+                    "description": "ID de un asset subido por el cliente."
+                  },
+                  "cta": {
+                    "type": "object",
+                    "properties": {
+                      "label": {
+                        "type": "string",
+                        "maxLength": 30
+                      },
+                      "action": {
+                        "type": "string",
+                        "enum": [
+                          "whatsapp",
+                          "call",
+                          "form"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "label",
+                      "action"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "headline",
+                  "cta"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "props"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "type": {
+                "type": "string",
+                "const": "services-grid"
+              },
+              "props": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "columns": {
+                    "type": "number",
+                    "enum": [
+                      2,
+                      3
+                    ],
+                    "default": 3
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "maxLength": 50
+                        },
+                        "description": {
+                          "type": "string",
+                          "maxLength": 140
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 1,
+                    "maxItems": 8
+                  }
+                },
+                "required": [
+                  "title",
+                  "items"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "props"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "type": {
+                "type": "string",
+                "const": "contact"
+              },
+              "props": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "maxLength": 60,
+                    "default": "Contáctanos"
+                  },
+                  "whatsapp": {
+                    "type": "string",
+                    "maxLength": 32
+                  },
+                  "phone": {
+                    "type": "string",
+                    "maxLength": 32
+                  },
+                  "address": {
+                    "type": "string",
+                    "maxLength": 160
+                  },
+                  "hours": {
+                    "type": "string",
+                    "maxLength": 120
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "props"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "maxItems": 12
+    }
+  },
+  "required": [
+    "library",
+    "locale",
+    "theme",
+    "sections"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,36 @@
+# General
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+staticfiles/
+media/
+
+# Node
+node_modules/
+dist/
+.vite/
+coverage/
+*.tsbuildinfo
+
+# Infra
+.terraform/
+*.tfstate
+*.tfstate.*
+cdk.out/
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json

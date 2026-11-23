@@ -1,0 +1,13 @@
+{
+  "name": "opzy-frontend",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev:widget": "pnpm --filter @opzy/widget dev",
+    "dev:landing": "pnpm --filter @opzy/landing dev",
+    "build:catalog": "pnpm --filter @opzy/sections build:catalog",
+    "typecheck": "pnpm -r typecheck",
+    "build": "pnpm -r build"
+  }
+}
